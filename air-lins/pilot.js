@@ -1,52 +1,31 @@
 'use strict';
 const events = require('../events');
-const { faker } = require('@faker-js/faker');
 
 
-// require('./manager')
 
 
-events.on('New flight',newFlight)
 
-function newFlight(payload){
+
+events.on('New flight',takeOff)
+events.on('New flight',arrived)
+
+
  
 
-    setInterval(()=>{
-        console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-            console.log(`Pilot: flight with ID : ;${payload.Details.flightID}; took-off `);
-        let details = {
-            event: 'flight took-off',
-            time:payload.time,
-            Details:{
-                airLine: 'Royal Jordanian Airlines',
-                flightID: payload.Details.flightID,
-                pilot:payload.Details.pilot,
-                destination: payload.Details.destination
-            } 
-            
-        }
-        events.emit('flight took-off',details)
-        
-        },4000)
-
-        
-
-setInterval(()=>{
-    console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-        console.log(`Pilot: flight with ID : ;${payload.Details.flightID}; has arrived`);
-    let details = {
-        event: 'Arrived',
-        time:payload.time,
-        Details:{
-            airLine: 'Royal Jordanian Airlines',
-            flightID: payload.Details.flightID,
-            pilot:payload.Details.pilot,
-            destination: payload.Details.destination
-        } 
-        
+    function takeOff(payload) {
+        setTimeout(() => {
+            payload.event = "flight took-off";
+            payload.time = new Date();
+            console.log(`flight with ID ${payload.Details.flightID} took-off`);
+            events.emit('flight took-off', payload)
+        }, 4000);
     }
-    events.emit('Arrived',details)
+    function arrived(payload) {
+        setTimeout(() => {
+            payload.event = "arrived";
+            payload.time = new Date();
+            console.log(`Pilot: flight with ID ${payload.Details.flightID} has arrived`);
+            events.emit('arrived', payload)
+        }, 7000);
+    }
     
-    },7000)
-}
-

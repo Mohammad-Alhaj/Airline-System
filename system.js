@@ -18,9 +18,8 @@ function tookOff(payload){
     console.log('Flight' ,payload);
 }
 
-events.on('Arrived',arrived);
+events.on('arrived',arrived);
 function arrived(payload){
 
     console.log('Flight',payload)
-    console.log(`Manager: we're greatly thankful for the amazing flight, ${payload.Details.pilot}`);  
 }
