@@ -38,5 +38,3 @@ connections.emit('New flight',details)
 
 
 
-
-
