@@ -33,7 +33,7 @@ var details = {
 }
 connections.emit('New flight',details)
 
-},10000)
+},10000 )
 
 
 
