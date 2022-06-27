@@ -35,12 +35,6 @@ connections.emit('New flight',details)
 
 },10000)
 
-// setTimeout(() => {
-//     connections.on('arrived',(payload)=>{
-//         console.log(`we’re greatly thankful for the amazing flight, ${payload.Details.pilot}`);
-//     })
-// }, 8000);
-
 
 
 

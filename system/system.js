@@ -7,7 +7,8 @@ io.on('connection', (socket) => {
     console.log('global connection', socket.id);
     socket.on('New flight', (payload) => {
         console.log('Flight ', payload);
-        airLineConnection.emit('New flight', payload); // send from global to namespace
+
+        airLineConnection.emit('New flight', payload); 
     });
 });
 airLineConnection.on('connection', (socket) => {
@@ -24,6 +25,7 @@ airLineConnection.on('connection', (socket) => {
     socket.on('arrived', arrived);
     function arrived(payload) {
         console.log('Flight ', payload);
-        io.emit('arrived', payload); // send from namespace to global
+
+        io.emit('arrived', payload); 
     }
 });
