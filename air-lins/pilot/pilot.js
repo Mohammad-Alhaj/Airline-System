@@ -14,7 +14,7 @@ const sockets = ioClient.connect(host)
 
 
 
-sockets.on('New flight',takeOff)
+sockets.emit('get_all')
 
 
 
@@ -23,7 +23,7 @@ function takeOff(payload) {
     setTimeout(() => {
         payload.event = "flight took-off";
         payload.time = new Date();
-        console.log(`flight with ID ${payload.Details.flightID} took-off`);
+        // console.log(`flight with ID ${payload.Details.flightID} took-off`);
         sockets.emit('flight took-off', payload)
     }, 4000);
 }
@@ -32,9 +32,16 @@ sockets.on('New flight',arrived)
         setTimeout(() => {
             payload.event = "arrived";
             payload.time = new Date();
-            console.log(`Pilot: flight with ID ${payload.Details.flightID} has arrived`);
+            // console.log(`Pilot: flight with ID ${payload.Details.flightID} has arrived`);
             sockets.emit('arrived', payload)
             
         }, 7000);
     }
     
+    sockets.on('flight', (flight) => {
+
+        console.log('pilot got this newFlight', flight);
+        // sockets.emit('received', flight);
+    
+    })
+ 

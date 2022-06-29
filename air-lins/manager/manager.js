@@ -35,6 +35,11 @@ connections.emit('New flight',details)
 
 },10000)
 
+// connections.on('added', (payload) => {
+//     console.log('Thank you for adding : ', payload, ' to msgQueue.');
+//     // socket.disconnect();
+// })
+
 
 
 
