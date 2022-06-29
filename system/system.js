@@ -47,12 +47,14 @@ io.on('connection', (socket) => {
     console.log('global connection', socket.id);
     socket.on('New flight', (payload) => {
         console.log('Flight ', payload);
+
         messageQ.newFlights[id]=payload
 
     airLineConnection.emit('New flight',{
         id:id,
         payload:messageQ.newFlights
     })
+
     });
 
 airLineConnection.on('connection', (socket) => {
@@ -79,6 +81,7 @@ airLineConnection.on('connection', (socket) => {
     socket.on('arrived', arrived);
     function arrived(payload) {
         console.log('Flight ', payload);
+
         io.emit('arrived', payload); 
     }
 });
